@@ -1,22 +1,33 @@
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css';
+import {Link} from 'react-router-dom'
 
 
 function NavBar(props) {
 
-
     return (
         <div class="ui large menu">
-        <a class="active item">
-          Home
-        </a>
-        <a class="item">
-          Beanie Babies
-        </a>
+        <Link to={'/'}>
+          <a class="item">
+            Home
+          </a>
+        </Link>
+        <Link to={'/beanies'}>
+          <a class="item">
+            Beanie Babies
+          </a>
+        </Link>
         <div class="right menu">
-          <div class="item">
-              <div class="ui primary button">Sign Up</div>
-          </div>
+        <Link to={'/cart'}>
+            <div class="item">
+              <div class="ui primary button">Cart</div>
+            </div>
+          </Link>
+          <Link to={'/login'}>
+            <div class="item">
+              <div class="ui primary button">Log in</div>
+            </div>
+          </Link>
         </div>
       </div>
     );

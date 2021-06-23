@@ -12,7 +12,7 @@ function Beanie(props) {
         onClick={setIsFlipped}>
         <div>
           <div className="image">
-            <img src={props.beanie.img_url} alt="oh no!" />
+            <img src={props.beanie.image_url} alt="oh no!" width="290px" height="auto"/>
           </div>
           <div className="content">
             <div className="header">{props.beanie.name}</div>

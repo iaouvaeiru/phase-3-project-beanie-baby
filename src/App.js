@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import 'semantic-ui-css/semantic.min.css';
+import NavBar from './components/NavBar';
+import BeaniesList from './BeaniesListList';
+// import PaintingForm from './PaintingForm'
 
 function App() {
+
+  const[beanies, setBeanies]=useState([])
+
+  // useEffect(() => {
+  //   fetch("http://localhost:4000/beanies")
+  // .then((r) => r.json())
+  // .then((beaniesArray) => setBeanies(beaniesArray));
+
+  // }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+    <NavBar
+    // color={this.state.color}
+    title="beanies, baby!"
+    icon="beanie baby"
+    description="an app we made"
+    // changeColor={this.changeColor}
+  />
+  <BeaniesList beanies={beanies} />
+  </div>
   );
 }
 

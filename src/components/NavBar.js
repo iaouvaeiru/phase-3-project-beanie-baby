@@ -6,26 +6,26 @@ import {Link} from 'react-router-dom'
 function NavBar(props) {
 
     return (
-        <div class="ui large menu">
+        <div className="ui large menu">
         <Link to={'/'}>
-          <a class="item">
+          <a className="item">
             Home
           </a>
         </Link>
         <Link to={'/beanies'}>
-          <a class="item">
+          <a className="item">
             Beanie Babies
           </a>
         </Link>
-        <div class="right menu">
+        <div className="right menu">
         <Link to={'/cart'}>
-            <div class="item">
-              <div class="ui primary button">Cart</div>
+            <div className="item">
+              <div className="ui primary button">Cart</div>
             </div>
           </Link>
           <Link to={'/login'}>
-            <div class="item">
-              <div class="ui primary button">Log in</div>
+            <div className="item">
+              <div className="ui primary button">Log in</div>
             </div>
           </Link>
         </div>

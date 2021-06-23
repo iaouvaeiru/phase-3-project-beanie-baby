@@ -24,7 +24,7 @@ function Beanie(props) {
             </span>
             <div>
                 {props.beanie.animal}
-               "swing tag:{props.beanie.swing_tag}"
+               swing tag:{props.beanie.swing_tag}
             </div>
           </div>
         </div>

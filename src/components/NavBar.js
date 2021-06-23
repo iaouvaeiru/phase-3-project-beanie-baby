@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css';
 
 
-function NavBar() {
+function NavBar(props) {
 
 
     return (

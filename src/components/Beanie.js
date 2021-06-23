@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react'
+import { Card } from 'semantic-ui-react'
 
-function Beanie() {
+function Beanie(props) {
+
+    const[flipped, setIsFlipped]=useState(false)
+    console.log(props.beanie)
+    
 
     return(
+        <Card
+        onClick={setIsFlipped}>
         <div>
-        <img src={props.beanie.image} />
-        <h4>
-          {props.beanie.name}
-        </h4>
-        {/* <p>Year: {this.props.painting.date}</p>
-        <p>
-          Dimensions: {this.props.painting.dimensions.width} in. x {this.props.painting.dimensions.height} in.
-        </p> */}
-
-        <div className="ui labeled button" tabIndex="0">
-          <div className="ui red button" onClick={this.addVote}>
-            <i className="heart icon"></i> Add Vote
+          <div className="image">
+            <img src={props.beanie.img_url} alt="oh no!" />
           </div>
-          <a className="ui basic red left pointing label">
-            {this.state.votes}
-          </a>
+          <div className="content">
+            <div className="header">{props.beanie.name}</div>
+          </div>
+          <div className="extra content">
+            <span>
+              <i className="price" />
+              {props.beanie.price}
+            </span>
+            <div>
+                {props.beanie.animal}
+               "swing tag:{props.beanie.swing_tag}"
+            </div>
+          </div>
         </div>
-      </div>
+      </Card>
     )
+  
 }
+
+export default Beanie

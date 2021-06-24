@@ -30,7 +30,9 @@ function App(props) {
 
   
   return (
-    <div>
+    <div
+    style={{
+      backgroundColor: '#f0f8ff'}}>
         <NavBar
           title="beanies, baby!"
           icon="beanie baby"

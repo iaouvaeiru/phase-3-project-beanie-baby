@@ -7,7 +7,9 @@ import logo from '/Users/nicholasthomson/Development/code/Mod3/Phase-3-Project/f
 function NavBar(props) {
 
     return (
-        <div className="ui large menu">
+        <div className="ui large menu"
+        style={{
+          backgroundColor: '#ffff66'}}>
         <Link to={'/'}>
           <a className="item">
             <img src={logo}/>

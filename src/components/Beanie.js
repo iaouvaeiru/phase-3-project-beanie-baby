@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'semantic-ui-react'
+import '@fontsource/roboto'
 
 
 function Beanie(props) {
@@ -26,15 +27,17 @@ function Beanie(props) {
     return(
         <Card
         onClick={handleClick}
-        class="red card"
         
         >
             
         {flipped ? <p class="poem text"><h1>{props.beanie.name}</h1> <br/>{props.beanie.poem.split('/').map(line => <span>{line}<br/></span>)}</p> : 
-          <div id="flipped">
+          <div id="flipped"
+          >
             <div className="content">
             <div className="header">
-              <h1 class="ui block header">{props.beanie.name}</h1>
+            <a class="ui gray label">
+            <h1 class="large text">{props.beanie.name}</h1>
+          </a>
               </div>
           </div>
           <div className="image">

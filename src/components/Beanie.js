@@ -35,7 +35,7 @@ function Beanie(props) {
           >
             <div className="content">
             <div className="header">
-            <a class="ui gray label">
+            <a class="ui black label">
             <h1 class="large text">{props.beanie.name}</h1>
           </a>
               </div>

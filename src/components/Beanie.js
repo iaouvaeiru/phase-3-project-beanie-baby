@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import { Card } from 'semantic-ui-react'
-import BeanieBack from './BeanieBack'
-import '@fontsource/roboto'
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles'
+import { Card, Button } from 'semantic-ui-react'
+
 
 function Beanie(props) {
 
@@ -29,10 +26,17 @@ function Beanie(props) {
     return(
         <Card
         onClick={handleClick}
+        class="red card"
+        
         >
             
-        {flipped ? <p class="large text">{props.beanie.poem.split('/').map(line => <span>{line},<br/></span>)}</p> : 
+        {flipped ? <p class="poem text"><h1>{props.beanie.name}</h1> <br/>{props.beanie.poem.split('/').map(line => <span>{line}<br/></span>)}</p> : 
           <div id="flipped">
+            <div className="content">
+            <div className="header">
+              <h1 class="ui block header">{props.beanie.name}</h1>
+              </div>
+          </div>
           <div className="image">
             <img class="mdc-image-list__image"
             src={props.beanie.image_url}
@@ -40,19 +44,17 @@ function Beanie(props) {
              width="290px" 
              height="auto"/>
           </div>
-          <div className="content">
-            <div className="header"
-            >{props.beanie.name}</div>
-          </div>
+          
           <div className="extra content">
             <span>
               <i className="price" />
-              {props.beanie.price}
+              <h3 class="large text">${props.beanie.price}</h3>
             </span>
             <div>
-                {props.beanie.animal}
-               swing tag:{props.beanie.swing_tag}
+                <h3 class = "large text">{props.beanie.animal}</h3>
+               <h3 class = "large text">swing tag: {props.beanie.swing_tag}</h3>
             </div>
+            <Button positive>Add to Cart</Button>
           </div>
         </div>
       }

@@ -19,6 +19,8 @@ function BeaniesList (props) {
     <Beanie
       key={beanie.id}
       beanie={beanie}
+      user={props.user}
+      addToCarts={props.addToCarts}
     />
   ))
   

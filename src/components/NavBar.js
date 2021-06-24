@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css';
 import {Link} from 'react-router-dom'
-import logo from '/Users/nicholasthomson/Development/code/Mod3/Phase-3-Project/frontend/phase-3-project-frontend/src/ty_logo.png'
+import logo from '../ty_logo.png'
 
 
 function NavBar(props) {

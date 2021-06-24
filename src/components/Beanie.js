@@ -13,12 +13,30 @@ function Beanie(props) {
     }
 
     
-    console.log(props.beanie.poem)
-    console.log(props.beanie.poem.split('/'))
-    console.log (flipped)
-    // 
-    // console.log(poem)
-    console.log(props.beanie.poem.class)
+    // console.log(props.beanie.poem)
+    // console.log(props.beanie.poem.split('/'))
+    // console.log (flipped)
+    // // 
+    // // console.log(poem)
+    // console.log(props.beanie.poem.class)
+
+    const addToCart = () => {
+      fetch("http://localhost:9393/addBeanieToCart", {
+      method: "POST",
+      headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    //params in the controller
+    user_id: props.user.id,
+    beanie_baby_id: props.beanie.id
+
+  }),
+})
+  .then((r) => r.json())
+  .then((cartObj) => props.addToCarts(cartObj));
+
+    }
   
 
     
@@ -27,14 +45,11 @@ function Beanie(props) {
     return(
         <Card
         onClick={handleClick}
-        
-        >
-            
+        >   
         {flipped ? <p class="poem text"><h1>{props.beanie.name}</h1> <br/>{props.beanie.poem.split('/').map(line => <span>{line}<br/></span>)}</p> : 
-          <div id="flipped"
-          >
+          <div id="flipped">
             <div className="content">
-            <div className="header">
+            <div className="center aligned header">
             <a class="ui black label">
             <h1 class="large text">{props.beanie.name}</h1>
           </a>
@@ -57,7 +72,10 @@ function Beanie(props) {
                 <h3 class = "large text">{props.beanie.animal}</h3>
                <h3 class = "large text">swing tag: {props.beanie.swing_tag}</h3>
             </div>
-            <Button positive>Add to Cart</Button>
+            <Button 
+            class="ui inverted olive button"
+            onClick={addToCart}>Add to Cart
+            </Button>
           </div>
         </div>
       }

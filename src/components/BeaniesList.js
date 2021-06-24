@@ -5,17 +5,10 @@ import {Card} from 'semantic-ui-react'
 
 function BeaniesList (props) {
 
-    const[beanies, setBeanies]=useState([])
 
-  useEffect(() => {
-    fetch("http://localhost:9393/beanies")
-  .then((r) => r.json())
-  .then((beaniesArray) => setBeanies(beaniesArray));
-
-  }, []);
   
   let renderBeanies = 
-  beanies.map(beanie => (
+  props.beanies.map(beanie => (
     <Beanie
       key={beanie.id}
       beanie={beanie}
@@ -24,7 +17,7 @@ function BeaniesList (props) {
     />
   ))
   
-  console.log(beanies)
+  // console.log(beanies)
     return (
         
         <div>

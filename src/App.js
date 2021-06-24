@@ -10,7 +10,7 @@ import Cart from './components/Cart'
 
 function App(props) {
 
-
+  const[beanies, setBeanies]=useState([])
 
 
   const [currentUser,setCurrentUser]=useState({
@@ -29,6 +29,14 @@ function App(props) {
       
       }, []);
 
+      
+
+      useEffect(() => {
+        fetch("http://localhost:9393/beanies")
+      .then((r) => r.json())
+      .then((beaniesArray) => setBeanies(beaniesArray));
+    
+      }, []);
 
   const setUser = (user) => {
 
@@ -43,6 +51,13 @@ function App(props) {
 
   const addToCarts = (cart) => {
     setCarts(carts.concat(cart))
+  }
+
+  const deleteFromCart = (beanie_id) => {
+    const newCart = carts.filter (cart => {
+      return cart.beanie_baby_id !== beanie_id
+    })
+    setCarts(newCart)
   }
 console.log(currentUser)
   
@@ -70,16 +85,20 @@ console.log(currentUser)
         return <div>
         <Cart
           {...routerProps}carts={carts}
-          currentUser={currentUser}>
-            
+          currentUser={currentUser}
+          beanies={beanies}
+            deleteFromCart={deleteFromCart}
+            >
           </Cart>
           </div>
         }}>
         </Route>
         <Route path={'/beanies'}>
           <BeaniesList 
+          beanies={beanies}
           user={currentUser}
-          addToCarts={addToCarts}/>
+          addToCarts={addToCarts}
+          />
         </Route>
         <Route path={'/'}>
           <Home />

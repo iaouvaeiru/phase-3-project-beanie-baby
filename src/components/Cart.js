@@ -7,23 +7,25 @@ export default function Cart(props) {
     
     //   console.log(carts[0].beanie_baby.name)
 
-    const handleDelete = () => {
-        fetch("http://localhost:9393/removeBeanieFromCart", {
-      method: "POST",
-      headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    //params in the controller
-    user_id: props.currentUser.id,
-    beanie_baby_id: props.beanie.id
+    
 
-  }),
-})
-  .then((r) => r.json())
-  .then((cartObj) => props.addToCarts(cartObj));
+//     const handleDelete = () => {
+//         fetch("http://localhost:9393/removeBeanieFromCart", {
+//       method: "POST",
+//       headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//     //params in the controller
+//     user_id: props.currentUser.id,
+//     beanie_baby_id: beanie_baby_id
 
-    }
+//   }),
+// })
+//   .then((r) => r.json())
+//   .then(() => props.deleteFromCart(props.beanie.id));
+
+//     }
         
     
 
@@ -39,7 +41,23 @@ export default function Cart(props) {
         <Button 
         class="ui negative basic button"
         color="red"
-        onClick={handleDelete}>Delete</Button>
+        onClick={() => {
+            fetch("http://localhost:9393/removeBeanieFromCart", {
+          method: "POST",
+          headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        //params in the controller
+        user_id: props.currentUser.id,
+        beanie_baby_id: cartObj.beanie_baby_id
+    
+      }),
+    })
+      .then((r) => r.json())
+      .then(() => props.deleteFromCart(cartObj.beanie_baby_id));
+    
+        }}>Delete</Button>
                 </Card>
     )})
        }

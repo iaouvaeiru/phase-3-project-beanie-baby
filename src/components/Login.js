@@ -37,6 +37,7 @@ export default function Login(props) {
                     alert(potentialUser.error)
                 } else {
                     props.setUser(potentialUser)
+                    props.toggleLoginState()
                 }
             })
     

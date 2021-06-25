@@ -22,26 +22,20 @@ function Beanie(props) {
 
     const addToCart = () => {
       fetch("http://localhost:9393/addBeanieToCart", {
-      method: "POST",
-      headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    //params in the controller
-    user_id: props.user.id,
-    beanie_baby_id: props.beanie.id
-
-  }),
-})
-  .then((r) => r.json())
-  .then((cartObj) => props.addToCarts(cartObj));
-
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        //params in the controller
+        user_id: props.user.id,
+        beanie_baby_id: props.beanie.id
+        }),
+      })
+      .then((r) => r.json())
+      .then((cartObj) => {props.checkCartExistence(cartObj)});
     }
-  
-
     
-    
-
     return(
         <Card
         onClick={handleClick}

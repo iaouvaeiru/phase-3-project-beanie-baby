@@ -18,15 +18,24 @@ function App(props) {
     name:'',
     })
     
+  const [loginState, setLoginState] = useState({
+    loggedIn: false
+  })
 
+  const toggleLoginState = () => {
+    setLoginState({
+      loggedIn: !loginState
+    })
+  }
 
-    const [carts, setCarts] = useState([])
+  const [carts, setCarts] = useState([])
 
     useEffect( async () => {
         await fetch("http://localhost:9393/cart")
       .then((r) => r.json())
-      .then((cartArray) => setCarts(cartArray));
-      
+      .then((cartArray) => {
+        console.log(cartArray)
+        setCarts(cartArray)});
       }, []);
 
       
@@ -48,9 +57,19 @@ function App(props) {
     // CHANGE THE URL
     props.history.push("/beanies")
   }
+  
 
   const addToCarts = (cart) => {
-    setCarts(carts.concat(cart))
+    console.log(cart)
+    setCarts([...carts, cart])
+  }
+
+  const checkCartExistence = (cart) => {
+    if (carts.some(cart_obj => cart_obj.id == cart.id)){
+      updateCartsState(cart)
+    } else {
+      addToCarts(cart)
+    }
   }
 
   const deleteFromCart = (beanie_id) => {
@@ -59,6 +78,18 @@ function App(props) {
     })
     setCarts(newCart)
   }
+
+  const updateCartsState = (updatedCart) => {
+    const newCart = carts.map(cart => {
+      if (cart.id === updatedCart.id){
+        return updatedCart
+      } else {
+        return cart
+      }
+    })
+    setCarts(newCart)
+  }
+
 console.log(currentUser)
   
   return (
@@ -69,13 +100,16 @@ console.log(currentUser)
           title="beanies, baby!"
           icon="beanie baby"
           description="an app we made"
+          loginState={loginState}
+          toggleLoginState={toggleLoginState}
         />
       <Switch>
         <Route path={'/login'}
         render={routerProps => {
         return<div>
           <Login
-          {...routerProps}setUser={setUser}>
+          {...routerProps}setUser={setUser}
+          toggleLoginState={toggleLoginState}>
           </Login>
           </div>
         }}>
@@ -87,7 +121,8 @@ console.log(currentUser)
           {...routerProps}carts={carts}
           currentUser={currentUser}
           beanies={beanies}
-            deleteFromCart={deleteFromCart}
+          deleteFromCart={deleteFromCart}
+          updateCartsState={updateCartsState}
             >
           </Cart>
           </div>
@@ -98,6 +133,7 @@ console.log(currentUser)
           beanies={beanies}
           user={currentUser}
           addToCarts={addToCarts}
+          checkCartExistence={checkCartExistence}
           />
         </Route>
         <Route path={'/'}>

@@ -14,6 +14,7 @@ function BeaniesList (props) {
       beanie={beanie}
       user={props.user}
       addToCarts={props.addToCarts}
+      checkCartExistence={props.checkCartExistence}
     />
   ))
   

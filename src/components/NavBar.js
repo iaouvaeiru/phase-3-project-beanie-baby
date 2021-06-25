@@ -28,7 +28,9 @@ function NavBar(props) {
           </Link>
           <Link to={'/login'}>
             <div className="item">
-              <div className="ui primary button">Log in</div>
+              <div 
+                className="ui primary button"
+                onClick={props.toggleLoginState}>{props.loginState.loggedIn ? "Log out" : "Log in"}</div>
             </div>
           </Link>
         </div>

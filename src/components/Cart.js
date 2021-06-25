@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card, Button } from 'semantic-ui-react'
+import CartObj from './CartObj'
 
 
 export default function Cart(props) {
@@ -27,46 +28,27 @@ export default function Cart(props) {
 
 //     }
         
-    
+  const oneCart = props.carts.filter(cartObj => {
+    return (cartObj.user_id === props.currentUser.id)
+  })
 
    const renderCart = () => {
-    return props.carts.map(cartObj =>{
-        return (<Card>
-
-        <img src={cartObj.beanie_baby.image_url}></img>
-        <p>Quantity: {cartObj.quantity}</p>
-        <br />
-        <p>Price per Beanie: ${cartObj.beanie_baby.price}</p>
-        <p>Total: ${cartObj.quantity *(cartObj.beanie_baby.price)}</p>
-        <Button 
-        class="ui negative basic button"
-        color="red"
-        onClick={() => {
-            fetch("http://localhost:9393/removeBeanieFromCart", {
-          method: "POST",
-          headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        //params in the controller
-        user_id: props.currentUser.id,
-        beanie_baby_id: cartObj.beanie_baby_id
-    
-      }),
-    })
-      .then((r) => r.json())
-      .then(() => props.deleteFromCart(cartObj.beanie_baby_id));
-    
-        }}>Delete</Button>
-                </Card>
-    )})
-       }
+      return oneCart.map(cartObj => (
+        <CartObj
+          key={cartObj.id}
+          cartObj={cartObj}
+          currentUser={props.currentUser}
+          deleteFromCart={props.deleteFromCart}
+          updateCartsState={props.updateCartsState}
+        />
+        ))}
+        console.log(oneCart)
    console.log(props.carts[0])
     return (
 
         <div>
             
-            {renderCart()}
+            {props.currentUser.id !== 0 ? renderCart(): <h1>Please Log in</h1>}
            
   
         </div>

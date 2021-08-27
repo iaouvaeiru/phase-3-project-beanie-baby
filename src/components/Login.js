@@ -40,7 +40,6 @@ export default function Login(props) {
                     props.toggleLoginState()
                 }
             })
-    
         }
       
     return (
